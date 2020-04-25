@@ -10,7 +10,7 @@ const pg = require('pg');
 const app = express();
 
 app.use( express.urlencoded({extended:true }));
-app.use( express.static('./www') );
+app.use( express.static('./form') );
 
 app.get('/', (request, response) => {
     response.status(200).send('Youre not as stupid as you thought');

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="/css/reset.css" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <title>Forms and Such</title>
+</head>
+
+<body>
+  <header>
+    <h1>Forms and Such</h1>
+  </header>
+  <main>
+
+    <form action="/person" method="get">
+      <input name="name" placeholder="Name goes here" />
+      <input name="hair" placeholder="Describe your hair" />
+      <button type="submit">Tell the server</button>
+    </form>
+
+    <hr />
+
+    <form action="/city" method="post">
+      <input name="city" placeholder="Where are you from?" />
+      <textarea name="article"></textarea>
+      <button type='submit'>Save City</button>
+    </form>
+
+  </main>
+  <footer>
+    &copy; 2020 Lami
+  </footer>
+
+</body>
+
+</html>
