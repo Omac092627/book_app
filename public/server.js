@@ -21,8 +21,13 @@ app.get('/loveofmylife', (request, response) => {
     response.status(200).send('Message in a bottle')
 });
 
-app.post('/bros', (request, response) => {
-    response.status(200).send(request.body.article);
+app.get('/person', (request, response) => {
+    let data = {
+        name: request.query.name,
+        pets: ['dogs', 'cats', 'lizards', 'giraffe'],
+    }
+
+    response.status(200).render('pages/index.ejs', {person: data});
 });
 
 app.use('*', (request, response) => {
