@@ -1,0 +1,35 @@
+* {
+    box-sizing: border-box;
+  }
+  
+  html, body {
+    height: 100%;
+    width: 100%;
+  }
+  
+  body {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  header {
+    background: #111;
+    color: ivory;
+    height: 150px;
+    line-height: 150px;
+    text-align: center;
+  }
+  
+  footer {
+    background: maroon;
+    color: ivory;
+    height: 100px;
+    line-height: 100px;
+    text-align: center;
+  }
+  
+  main {
+    background: #eee;
+    flex: 1;
+    padding: 2rem;
+  }

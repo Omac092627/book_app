@@ -10,10 +10,11 @@ const pg = require('pg');
 const app = express();
 
 app.use( express.urlencoded({extended:true }));
-app.use( express.static('./www') );
+app.use( express.static('./form') );
+app.set('view engine', 'ejs');
 
 app.get('/', (request, response) => {
-    response.status(200).send('Youre not as stupid as you thought');
+    response.status(200).send('You\re not as stupid as you thought');
 });
 
 app.get('/loveofmylife', (request, response) => {
