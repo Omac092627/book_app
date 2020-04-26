@@ -59,7 +59,7 @@ h2 {
   color: ivory;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 416px) {
   /* For mobile phones: */
   * {
     width: 100%;
