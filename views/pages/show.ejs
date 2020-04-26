@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="style/reset.css">
+  <link rel="stylesheet" href="style/base.css">
+  <title>Book App</title>
+</head>
+
+<body>
+  <header>
+    <h1>Best Books</h1>
+  </header>
+  <h2>Search Results</h2>
+  <main>
+    <div>
+      <% books.forEach (book => { %> 
+    </div>
+    <section>
+    <div>
+      <%= book.image %> 
+    </div>
+    <div id="title">
+      <%= book.title %> 
+    </div>    
+    <div id="author">
+      Author Name: <%= book.author %> 
+    </div>
+    <div>
+      Description: <%= book.description %> 
+    </div>
+      <% }); %>
+    </div>
+  </section>
+  </main>
+  <footer>&copy; 2020 | Lami Beach - Chuck Li</footer>
+</body>
+
+</html>

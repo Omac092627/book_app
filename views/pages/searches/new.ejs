@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="style/reset.css">
+  <link rel="stylesheet" href="style/base.css">
+  <title>Book App</title>
+</head>
+
+<body>
+  <header>
+    <h1>Best Books</h1>
+  </header>
+  <main>
+    <h2>Search by Title or Author</h2>
+    <form method="post" action="/searches">
+      <div>
+        <input name="search" placeholder="Enter a title or author" />
+      </div>
+      <div>
+        <label>
+          <input type="radio" name="searchby" value="intitle">
+          Title
+        </label>
+        <label>
+          <input type="radio" name="searchby" value="inauthor">
+          Author
+        </label>
+      </div>
+      <button type="submit">Search the Google Books API</button>
+    </form>
+  </main>
+  <footer>&copy; 2020 | Lami Beach - Chuck Li</footer>
+</body>
+
+</html>
