@@ -58,3 +58,17 @@ h2 {
   text-align: center;
   color: ivory;
 }
+
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+  * {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  body{
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+  }
+}
