@@ -3,9 +3,16 @@
 }
 
 
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
 header {
   background: #111;
   color: ivory;
+  height: 150px;
   line-height: 150px;
   text-align: left;
 }
@@ -13,11 +20,13 @@ header {
 footer {
   background: #111;
   color: ivory;
+  height: 100px;
   line-height: 100px;
   text-align: center;
 }
 
 main {
+  flex: 1;
   padding: 2rem;
   text-align: center; 
   background-color: gray;
@@ -41,6 +50,7 @@ section {
 
 h2 {
   background: gray;
+  height: 100px;
   line-height: 100px;
   text-align: center;
   color: ivory;
