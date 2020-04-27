@@ -28,17 +28,5 @@
     height: 100px;
   }
   
-  @media only screen and (max-width: 416px) {
-    /* For mobile phones: */
-    * {
-      width: 100%;
-      box-sizing: border-box;
-    }
-  
-    body{
-      display: flex;
-      flex-direction: column;
-      margin: auto;
-    }
-  }
+
   

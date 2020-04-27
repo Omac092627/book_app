@@ -29,6 +29,10 @@ app.get('/new', (request, response) => {
   response.status(200).render('pages/searches/new')
 });
 
+//new error route
+app.get('/error', (request, response) => {
+  response.status(500).render('pages/error')
+})
 
 //show route
 app.post('/searches', (request, response) => {
@@ -65,9 +69,9 @@ app.use('*', (request, response) => {
 });
 
 // Error Handler
-app.use('/error', (err,request,response,next) => {
+app.use( (err,request,response,next) => {
   console.error(err);
-  response.status(500).render('pages/error');
+  response.status(500).send(err.message);
 });
 
 // Startup
