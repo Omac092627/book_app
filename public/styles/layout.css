@@ -1,0 +1,44 @@
+
+  html, body {
+    height: 100%;
+    width: 100%;
+  }
+  
+  body {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  header {
+    height: 150px;
+  }
+  
+  footer {
+    height: 100px;
+  }
+  
+  main {
+    flex: 1;
+  }
+  
+  
+  
+
+  h2 {
+    height: 100px;
+  }
+  
+  @media only screen and (max-width: 416px) {
+    /* For mobile phones: */
+    * {
+      width: 100%;
+      box-sizing: border-box;
+    }
+  
+    body{
+      display: flex;
+      flex-direction: column;
+      margin: auto;
+    }
+  }
+  
