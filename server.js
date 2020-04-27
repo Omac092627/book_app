@@ -29,6 +29,7 @@ app.get('/new', (request, response) => {
   response.status(200).render('pages/searches/new')
 });
 
+
 //show route
 app.post('/searches', (request, response) => {
   let url = 'https://www.googleapis.com/books/v1/volumes';
@@ -64,9 +65,9 @@ app.use('*', (request, response) => {
 });
 
 // Error Handler
-app.use( (err,request,response,next) => {
+app.use('/error', (err,request,response,next) => {
   console.error(err);
-  response.status(500).send(err.message);
+  response.status(500).render('pages/error');
 });
 
 // Startup
