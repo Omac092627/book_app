@@ -60,8 +60,22 @@ h2 {
   color: ivory;
 }
 
-@media only screen and (max-width: 416px) {
+@media only screen and (max-width: 768px) {
   /* For mobile phones: */
+  * {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  body{
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  /* For mobile desktops: */
   * {
     width: 100%;
     box-sizing: border-box;
