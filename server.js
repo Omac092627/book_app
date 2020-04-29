@@ -30,9 +30,10 @@ app.get('/new', (request, response) => {
 });
 
 //new error route
-app.get('/error', (request, response) => {
-  response.status(500).render('pages/error')
+app.get('/error', (request, response,) => {
+  response.status(404).render('pages/error');
 })
+
 
 //show route
 app.post('/searches', (request, response) => {
@@ -62,6 +63,15 @@ app.get('/badthing', (request,response) => {
   throw new Error('bad request???');
 });
 
+
+// Startup
+function startServer() {
+  app.listen( PORT, () => console.log(`Server running on ${PORT}`));
+}
+
+startServer();
+
+
 // 404 Handler
 app.use('*', (request, response) => {
   console.log(request);
@@ -73,10 +83,3 @@ app.use( (err,request,response,next) => {
   console.error(err);
   response.status(500).send(err.message);
 });
-
-// Startup
-function startServer() {
-  app.listen( PORT, () => console.log(`Server running on ${PORT}`));
-}
-
-startServer();
