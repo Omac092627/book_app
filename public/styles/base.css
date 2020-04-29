@@ -2,19 +2,8 @@
   box-sizing: border-box;
 }
 
-html, body {
-  height: 100%;
-  width: 100%;
-}
 
-img {
-  width: 250px;
-}
 
-body {
-  display: flex;
-  flex-direction: column;
-}
 
 header {
   background: #111;
@@ -33,7 +22,6 @@ footer {
 }
 
 main {
-  flex: 1;
   padding: 2rem;
   text-align: center; 
   background-color: gray;
@@ -64,19 +52,11 @@ h2 {
 }
 
 fieldset{
-  width: 100%;
   border: 1px solid white;
   text-align: left;
-  margin-bottom: 1rem;
 }
 
-#input1{
-  margin-bottom: 1rem;
-}
 
-#input1, button{
-  width: 100%;
-}
 
 button{
   background-color: black;
@@ -87,45 +67,3 @@ button{
 
 
 
-
-
-
-@media only screen and (max-width: 768px) {
-  /* For mobile phones: */
-  * {
-    box-sizing: border-box;
-  
-  }
-
-  body{
-    display: flex;
-    flex-direction: column;
-    margin: auto;
-  }
-  main {
-    flex: 1;
-    padding: 2rem;
-    text-align: center; 
-    background-color: gray;
-  }
-}
-
-@media only screen and (min-width: 768px) {
-  /* For mobile desktops: */
-  * {
-    box-sizing: border-box;
-  }
-
-  body{
-    display: flex;
-    flex-direction: column;
-    margin: auto;
-    flex-grow: 1;
-  }
-  main {
-    flex: 1;
-    padding: 2rem;
-    text-align: center; 
-    background-color: gray;
-  }
-}
