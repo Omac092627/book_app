@@ -5,8 +5,20 @@ html, body {
   width: 100%;
 }
 
-img {
+
+#bookCover {
   width: 250px;
+  display: flex;
+  flex: 1;
+  margin: auto;
+}
+
+#description{
+  display: flex;
+  flex: 1;
+  width: 330px;
+  margin: auto;
+  margin-bottom: 2rem;
 }
 
 body {
@@ -14,13 +26,15 @@ body {
   flex-direction: column;
 }
 
-
+#searchResults{
+  display: flex;
+  flex: 1;
+}
 
 main {
   flex: 1;
 
 }
-
 
 
 fieldset{
@@ -30,6 +44,7 @@ fieldset{
 
 #input1{
   margin-bottom: 1rem;
+
 }
 
 #input1, button{
@@ -54,6 +69,19 @@ fieldset{
     text-align: center; 
     background-color: gray;
   }
+  #bookCover {
+    width: 250px;
+    display: flex;
+    margin: auto;
+  }
+  
+  #description{
+    display: flex;
+    width: 330px;
+    margin: auto;
+    margin-bottom: 2rem;
+  }
+  
 }
 
 @media only screen and (min-width: 768px) {
@@ -74,4 +102,17 @@ fieldset{
     text-align: center; 
     background-color: gray;
   }
+  #bookCover {
+    width: 250px;
+    display: flex;
+    margin: auto;
+  }
+  
+  #description{
+    display: flex;
+    width: 330px;
+    margin: auto;
+    margin-bottom: 2rem;
+  }
+  
 }
