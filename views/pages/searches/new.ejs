@@ -13,20 +13,15 @@
   </header>
   <main>
     <h2>Search by Title or Author</h2>
-    <form method="post" action="/searches">
-      <div>
-        <input name="search" placeholder="Enter a title or author" />
-      </div>
-      <div>
-        <label>
-          <input type="radio" name="searchby" value="intitle">
-          Title
-        </label>
-        <label>
-          <input type="radio" name="searchby" value="inauthor">
-          Author
-        </label>
-      </div>
+    <form id="searchForm" method="post" action="/searches">
+        <input name="search" placeholder="Enter a title or author">
+
+        <input  type="radio" name="searchby" value="intitle">
+        <label id="label1" for="intitle">  Title </label>
+
+        <input type="radio" name="searchby" value="inauthor">
+        <label id="label2" for="inauthor">Author</label>
+
       <button type="submit">Search the Google Books API</button>
     </form>
   </main>
@@ -34,3 +29,4 @@
 </body>
 
 </html>
+

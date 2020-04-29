@@ -1,5 +1,5 @@
-@import url("reset.css");
-@import url("base.css");
-@import url("layout.css");
-@import url("modules.css");
-@import url("icons.css");
+@import "reset.css";
+@import "base.css";
+@import "layouts.css";
+@import "modules.css";
+@import "icons.css";
