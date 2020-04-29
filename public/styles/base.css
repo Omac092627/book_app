@@ -7,6 +7,9 @@ html, body {
   width: 100%;
 }
 
+img {
+  width: 250px;
+}
 
 body {
   display: flex;
