@@ -5,6 +5,7 @@ require('dotenv').config();
 const express = require('express');
 const superagent = require('superagent');
 const PORT = process.env.PORT || 3000;
+const pg = require('pg');
 
 const app = express();
 
@@ -84,4 +85,10 @@ function startServer() {
   app.listen( PORT, () => console.log(`Server running on ${PORT}`));
 }
 
-startServer();
+
+//connecting the client to the databse//
+const client = new pg.Client(process.env.DATABASE_URL);
+client.on('error', err => console.error(err));
+client.connect()
+  .then(startServer)
+  .catch(err => console.error(err));
