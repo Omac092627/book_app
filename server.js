@@ -7,11 +7,11 @@ const superagent = require('superagent');
 const PORT = process.env.PORT || 3000;
 const pg = require('pg');
 const app = express();
-const client = new pg.Client(process.env.DATABASE_URL);
 
 //brings in EJS
 app.set('view engine', 'ejs');
 
+const client = new pg.Client(process.env.DATABASE_URL);
 app.use(express.urlencoded({extended:true}));
 app.use(express.static('./public'));
 
@@ -77,7 +77,7 @@ app.use('*', (request, response) => {
 // Error Handler
 app.use( (err,request,response,next) => {
   console.error(err);
-  response.status(500).send(err.message);
+  response.status(500).render('searches/error', {err})
 });
 
 // Startup
@@ -87,7 +87,8 @@ function startServer() {
 
 
 //connecting the client to the databse//
-client.on('error', err => console.error(err));
 client.connect()
-  .then(startServer)
+  .then( () => {
+    startServer(PORT);
+  })
   .catch(err => console.error(err));
