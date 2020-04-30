@@ -8,6 +8,10 @@ header {
   text-align: left;
 }
 
+#menu{
+  width: 20px;
+}
+
 footer {
   background: #111;
   color: ivory;
@@ -55,12 +59,15 @@ fieldset{
   text-align: left;
   font-weight: bolder;
   border-radius: 5px;
+  padding: 2rem;
+
 }
 
 #input1{
   border: 1px solid black;
   border-radius: 5px;
   text-emphasis: 10;
+  padding: 2rem;
 }
 
 
@@ -69,14 +76,35 @@ button{
   color: white;
   border: 1px solid white;
   border-radius: 5px;
-}
-
-#searchResults{
-  width: 300px;
+  padding: 2rem;
 }
 
 
+#imagemenu{
+  width: 50px;
+}
+#label1{
+  margin-right: 20px;
+}
 
+
+/*dropdown content(hidden)*/
+.dropdown-content{
+  background-color:  #f1f1f1;
+}
+
+/*links inside dropdown */
+
+.dropdown-content a{
+  color: black;
+}
+
+/* change colors of dropdown links on hover */
+.dropdown-content a:hover{background-color: turquoise;}
+
+
+/*change the background color of the dropdown button when the dropdown contentent is shown*/
+.dropdown:hover #menu{background-color: violet;}
 
 
 

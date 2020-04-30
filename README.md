@@ -26,6 +26,10 @@ Your entire application will be deployed on Heroku.
 ## Credits and Collaborations
 Chuck Li
 
+
+Used for the icons:
+Icons made by <a href="https://www.flaticon.com/authors/those-icons" title="Those Icons">Those Icons</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
+
 Number and name of feature: 
 
 Estimate of time needed to complete: _____
