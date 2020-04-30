@@ -15,29 +15,27 @@
   <main class="searchResults">
     <div>
       <% books.forEach (book => { %> 
-    </div>
-    <section>
-    <div>
-      <img id="bookCover" src="<%= book.image %>">
-    </div>
-    <div id="title">
-      <%= book.title %> 
-    </div>    
-    <div id="author">
-      Author Name: <%= book.author %> 
-    </div>
-    <div id="description">
-      Description: <%= book.description %> 
-    </div>
-    <!-- <div id="isbn">
-      ISBN: <%= book.isbn %> 
-    </div>
-    <div id="bookshelf">
-      Bookshelf: <%= book.bookshelf %> 
-    </div> -->
+        <section>
+          <div>
+            <img id="bookCover" src="<%= book.image %>">
+          </div>
+          <div id="title">
+            <%= book.title %> 
+          </div>    
+          <div id="author">
+            Author Name: <%= book.author %> 
+          </div>
+          <div id="description">
+            Description: <%= book.description %> 
+          </div>
+          <div id="isbn">
+            ISBN: <%= book.isbn %> 
+          </div>
+          <div id="price">
+            Price: <%= book.amount %> 
+          </div>
+        </section>
       <% }); %>
-    </div>
-  </section>
   </main>
   <%- include('../partials/footer') %>
 </body>

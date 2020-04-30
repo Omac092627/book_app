@@ -36,7 +36,7 @@ app.get('/error', (request, response,) => {
 
 
 //show route
-app.get('/searches', (request, response) => {
+app.post('/searches', (request, response) => {
   let url = 'https://www.googleapis.com/books/v1/volumes';
   let queryObject = {
     q: `${request.body.searchby}:${request.body.search}`,
@@ -45,8 +45,8 @@ app.get('/searches', (request, response) => {
   superagent.get(url)
     .query(queryObject)
       .then(results => {
+        console.log(results);
         let books = results.body.items.map(book => new Book(book));
-        // console.log(books);
         response.status(200).render('pages/searches/show', {books: books});
       });
 });
@@ -55,9 +55,9 @@ function Book(data) {
   this.title = data.volumeInfo.title;
   this.author = data.volumeInfo.authors;
   this.image = data.volumeInfo.imageLinks ? data.volumeInfo.imageLinks.thumbnail : `https://i.imgur.com/J5LVHEL.jpg`;
-  this.description = data.volumeInfo.description;
-  // this.isbn = data.volumeInfo.isbn;
-  // this.bookshelf = data.volumeInfo.bookshelf;
+  this.description = data.volumeInfo.description || 'no description available';
+  this.amount = data.saleInfo.listPrice ? `$${data.saleInfo.listPrice.amount}` : 'no price available';
+  this.isbn = data.volumeInfo.industryIdentifiers ? data.volumeInfo.industryIdentifiers[0].identifier : 'no isbn available';
 }
 
 
@@ -65,14 +65,6 @@ function Book(data) {
 app.get('/badthing', (request,response) => {
   throw new Error('bad request???');
 });
-
-
-// Startup
-function startServer() {
-  app.listen( PORT, () => console.log(`Server running on ${PORT}`));
-}
-
-startServer();
 
 
 // 404 Handler
@@ -86,3 +78,10 @@ app.use( (err,request,response,next) => {
   console.error(err);
   response.status(500).send(err.message);
 });
+
+// Startup
+function startServer() {
+  app.listen( PORT, () => console.log(`Server running on ${PORT}`));
+}
+
+startServer();
