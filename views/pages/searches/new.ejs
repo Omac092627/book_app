@@ -11,17 +11,18 @@
   <%- include('../partials/header') %>
   
   <main>
-    <form id="searchForm" method="get" action="/searches">
+    <form id="searchForm" method="post" action="/searches">
       
         <input id="input1" name="search" placeholder="Enter a title or author">
 
         <fieldset>
           <label id="label1" for="intitle">  Title </label>
-        <input  type="radio" name="searchby" value="intitle">
-      
-        <label id="label2" for="inauthor">Author</label>
-        <input type="radio" name="searchby" value="inauthor">
-      </fieldset>
+          <input  type="radio" name="searchby" value="intitle">
+        </fieldset>
+        <fieldset>
+          <label id="label2" for="inauthor">Author</label>
+          <input type="radio" name="searchby" value="inauthor">
+        </fieldset>
       <button type="submit">Search the Google Books API</button>
     </form>
   </main>
