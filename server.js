@@ -36,7 +36,7 @@ app.get('/error', (request, response,) => {
 
 
 //show route
-app.post('/searches', (request, response) => {
+app.get('/searches', (request, response) => {
   let url = 'https://www.googleapis.com/books/v1/volumes';
   let queryObject = {
     q: `${request.body.searchby}:${request.body.search}`,

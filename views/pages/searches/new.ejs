@@ -11,7 +11,7 @@
   <%- include('../partials/header') %>
   
   <main>
-    <form id="searchForm" method="post" action="/searches">
+    <form id="searchForm" method="get" action="/searches">
       
         <input id="input1" name="search" placeholder="Enter a title or author">
 
@@ -26,7 +26,7 @@
       <button type="submit">Search the Google Books API</button>
     </form>
   </main>
-  <footer>&copy; 2020 | Lami Beach - Chuck Li</footer>
+  <%- include('../partials/footer') %>
 </body>
 
 </html>
