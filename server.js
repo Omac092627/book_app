@@ -16,7 +16,7 @@ app.use(express.static('./public'));
 
 //If it finds the route
 app.get ('/', (request, response) => {
-  response.status(200).send('Hola Mundo');
+  response.status(200).render('pages/index');
 });
 
 //test route to check if index.ejs works
@@ -46,6 +46,7 @@ app.get('/searches', (request, response) => {
     .query(queryObject)
       .then(results => {
         let books = results.body.items.map(book => new Book(book));
+        // console.log(books);
         response.status(200).render('pages/searches/show', {books: books});
       });
 });
@@ -55,6 +56,8 @@ function Book(data) {
   this.author = data.volumeInfo.authors;
   this.image = data.volumeInfo.imageLinks ? data.volumeInfo.imageLinks.thumbnail : `https://i.imgur.com/J5LVHEL.jpg`;
   this.description = data.volumeInfo.description;
+  // this.isbn = data.volumeInfo.isbn;
+  // this.bookshelf = data.volumeInfo.bookshelf;
 }
 
 
