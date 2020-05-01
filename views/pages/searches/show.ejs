@@ -34,15 +34,13 @@
           <div id="price">
             Price: <%= book.amount %> 
           </div>
-
           <div id="selecter">
-            <form name="selectThisBook" id="searchForm" method="get" action="/">     
-              <input type="hidden" name="title" value="book.title">
-             <button  type="submit" id="selectThisBook">SELECT THIS BOOK</button>
+            <form id="searchForm" method="post" action="/add">     
+              <input type="hidden" name="title" value= <% book.title %>> 
+              <button  type="submit" id="selectThisBook">SELECT THIS BOOK</button>
             </form>
           </div>
-          
-        </section>
+          </section>
       <% }); %>
   </main>
   <%- include('../partials/footer') %>
