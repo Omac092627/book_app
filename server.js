@@ -37,7 +37,7 @@ app.get('/error', (request, response,) => {
 
 
 // route for saved books//
-app.get('/: books', handleGetOneBook);
+app.get('/index: books', handleGetOneBook);
 app.post('/', handleNewBook);
 
 
@@ -93,7 +93,7 @@ function handleNewBook(request, response){
 
   client.query(SQL, VALUES)
   .then(results => {
-    response.status(200).redirect('views/pages/index');
+    response.status(200).redirect('/', {VALUES});
   })
   .catch(error => {
     console.error(error.message);
@@ -104,13 +104,13 @@ function handleGetOneBook(request, response){
   const SQL =  `SELECT * FROM books WHERE id = $1`;
 
 
-  const VALUES = [request.params.books.id];
+  const VALUES = [request.params.books];
 
-  console.log('getting', request.params.books.id);
+  console.log('getting', request.params.books);
 
   client.query(SQL, VALUES)
     .then(results => {
-      response.status(200).render('views/pages/index', {books:results.rows[0]});
+      response.status(200).render('/books', {books:results.rows[0]});
     })
     .catch(error => {
       console.error(error.message);
