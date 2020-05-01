@@ -48,14 +48,44 @@ client.query(SQL, VALUES)
   });
 }
 
+
+function addNewBook (request, response) {
+  console.log('Book to be added: ', request.body);
+  let SQL = `
+    INSERT INTO books (title, authors, descriptions, isbn, image_url)
+    VALUES($1, $2, $3, $4, $5)
+  `;
+
+let VALUES = [
+  request.body.title,
+  request.body.author,
+  request.body.description,
+  request.body.isbn,
+  request.body.image,
+];
+
+if ( ! (request.body.title || request.body.authors || request.body.descriptions || request.body.isbn || request.body.image_url) ) {
+  throw new Error('invalid input');
+}
+
+client.query(SQL, VALUES)
+  .then( results => {
+    response.status(200).redirect('/');
+  })
+  .catch( error => {
+    console.error( error.message );
+  });
+}
+
 //new search route
 app.get('/new', (request, response) => {
   response.status(200).render('pages/searches/new')
 });
 
 // route for saved books//
-// app.get('/index: books', handleGetOneBook);
-// app.post('/', handleNewBook);
+app.get('/onebook', (request, response) => {
+  response.status(200).render('pages/searches/onebook')
+});
 
 //show route
 app.post('/searches', (request, response) => {

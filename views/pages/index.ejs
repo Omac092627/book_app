@@ -12,17 +12,19 @@
   <%- include('../pages/partials/header') %>
   
   <main>
+    <form id="searchForm" method="get" action="/onebook"> 
     <ul>
       <% books.forEach ( book => { %>
-        <li>
-          <img id="bookCover" src="<%= book.image_url %>">
-          Tittle: <%= book.title %>
+        <img id="bookCover" src="<%= book.image_url %>">
+        <li id="listItems">
+          Tittle: <%= book.title %></br>
           Authors: <%= book.authors %>
-          <!-- Description: <%= book.descriptions %> -->
-          Description: <%= book.descriptions %>
         </li>
+        <button  type="submit" id="viewDetails">View Details</button>
+
       <% }) %>
     </ul>
+    </form>
   </main>
   
   <%- include('../pages/partials/footer') %>

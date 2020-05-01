@@ -60,6 +60,11 @@ fieldset{
   margin-bottom: 2rem;
 }
 
+#viewDetails{
+  margin-bottom: 3rem;
+  width: 200px;
+}
+
 /*div for dropdown */
 .dropdown{
   position: relative;

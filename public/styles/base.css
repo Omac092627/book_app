@@ -124,6 +124,10 @@ button{
   text-align: center;
 }
 
-
+#listItems{
+  font-weight: bolder;
+  font-size: larger;
+  padding: 1rem;
+}
 
 
