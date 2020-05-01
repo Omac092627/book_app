@@ -37,8 +37,8 @@ app.get('/error', (request, response,) => {
 
 
 // route for saved books//
-app.get('/books/: books', handleGetOneBook);
-app.post('/index', handleNewBook);
+app.get('/: books', handleGetOneBook);
+app.post('/', handleNewBook);
 
 
 
@@ -71,50 +71,52 @@ function Book(data) {
 }
 
 
-function handleGetOneBook(request, response){
-  const SQL =  `SELECT * FROM books WHERE id = $1, $2, $3, $4, $5, $6`;
-
-
-  const VALUES = [request.body.books];
-
-  console.log('getting', request.body.books);
-
-  client.query(SQL, VALUES)
-    .then(results => {
-      response.status(200).render('form/index', {books:results.rows[0]});
-    })
-    .catch(error => {
-      console.error(error.message);
-    });
-}
 
 function handleNewBook(request, response){
   let SQL = `
-  INSERT INTO books (title, authors, image, description, amount, isbn, listPrice)
+  INSERT INTO books (title, authors, images, descriptions, isbn, listPrice)
   VALUES($1, $2, $3, $4, $5, $6) 
   `;
 
   let VALUES = [
     request.body.title, 
     request.body.authors, 
-    request.body.image,
-    request.body.description,
+    request.body.images,
+    request.body.descriptions,
     request.body.isbn, 
     request.body.listPrice
   ];
 
-  if ( ! (request.body.title || request.body.authors || request.body.image || request.body.description || request.body.isbn || request.body.listPrice) ) {
+  if ( ! (request.body.title || request.body.authors || request.body.images || request.body.descriptions || request.body.isbn || request.body.listPrice) ) {
     throw new Error('invalid input');
   }
 
   client.query(SQL, VALUES)
   .then(results => {
-    response.status(200).redirect('/index');
+    response.status(200).redirect('views/pages/index');
   })
   .catch(error => {
     console.error(error.message);
   });
 }
+
+function handleGetOneBook(request, response){
+  const SQL =  `SELECT * FROM books WHERE id = $1`;
+
+
+  const VALUES = [request.params.books.id];
+
+  console.log('getting', request.params.books.id);
+
+  client.query(SQL, VALUES)
+    .then(results => {
+      response.status(200).render('views/pages/index', {books:results.rows[0]});
+    })
+    .catch(error => {
+      console.error(error.message);
+    });
+}
+
 
 // This will force an error
 app.get('/badthing', (request,response) => {
@@ -131,7 +133,7 @@ app.use('*', (request, response) => {
 // Error Handler
 app.use( (err,request,response,next) => {
   console.error(err);
-  response.status(500).render('searches/error', {err})
+  response.status(500).render('pages/error', {err})
 });
 
 // Startup
