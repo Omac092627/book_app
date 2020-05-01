@@ -15,7 +15,7 @@
   <main class="searchResults">
     <div>
       <% books.forEach (book => { %> 
-        <section>
+        <section id="bordersection">
           <div>
             <img id="bookCover" src="<%= book.image %>">
           </div>
@@ -34,6 +34,13 @@
           <div id="price">
             Price: <%= book.amount %> 
           </div>
+
+          <div id="selecter">
+            <form name="selectThisBook" id="searchForm" method="post" action="/">      
+             <button  type="submit" id="selectThisBook">SELECT THIS BOOK</button>
+            </form>
+          </div>
+          
         </section>
       <% }); %>
   </main>

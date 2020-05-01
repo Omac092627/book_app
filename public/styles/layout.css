@@ -56,6 +56,10 @@ fieldset{
   width: 100%;
 }
 
+#price{
+  margin-bottom: 2rem;
+}
+
 /*div for dropdown */
 .dropdown{
   position: relative;
@@ -83,6 +87,7 @@ fieldset{
 
 /* show the dropdown menu on hover */
 .dropdown:hover .dropdown-content{display: block;}
+
 
 
 

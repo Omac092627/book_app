@@ -9,3 +9,4 @@ CREATE TABLE books (
   isbn VARCHAR(13),
   listPrice VARCHAR(20),
 );
+
