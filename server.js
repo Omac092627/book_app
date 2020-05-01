@@ -23,19 +23,19 @@ app.post('/add', addNewBook);
 function addNewBook (request, response) {
   console.log('Book to be added: ', request.body);
   let SQL = `
-    INSERT INTO books (title, authors, descriptions, isbn, listPrice)
+    INSERT INTO books (title, authors, descriptions, isbn, image_url)
     VALUES($1, $2, $3, $4, $5)
   `;
 
 let VALUES = [
   request.body.title,
-  request.body.authors,
-  request.body.descriptions,
+  request.body.author,
+  request.body.description,
   request.body.isbn,
-  request.body.listprice,
+  request.body.image,
 ];
 
-if ( ! (request.body.title || request.body.authors || request.body.descriptions || request.body.isbn || request.body.listprice) ) {
+if ( ! (request.body.title || request.body.authors || request.body.descriptions || request.body.isbn || request.body.image_url) ) {
   throw new Error('invalid input');
 }
 
@@ -67,6 +67,9 @@ app.post('/searches', (request, response) => {
   superagent.get(url)
   .query(queryObject)
   .then(results => {
+    // if (results === 'null') {
+    //   alert('oh crap');
+    // }
     console.log(results);
     let books = results.body.items.map(book => new Book(book));
     response.status(200).render('pages/searches/show', {books: books});

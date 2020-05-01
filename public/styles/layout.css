@@ -7,7 +7,7 @@ html, body {
 
 
 #bookCover {
-  width: 250px;
+  width: 200px;
   display: flex;
   flex: 1;
   margin: auto;
