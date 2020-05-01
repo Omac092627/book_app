@@ -12,7 +12,17 @@
   <%- include('../pages/partials/header') %>
   
   <main>
-    
+    <ul>
+      <% books.forEach ( book => { %>
+        <li>
+          Tittle: <%= book.title %>
+          Authors: <%= book.authors %>
+          Description: <%= book.description %>
+          ISBN: <%= book.isbn %>
+          Price: <%= book.listprice %>
+        </li>
+      <% }) %>
+    </ul>
   </main>
   
   <%- include('../pages/partials/footer') %>
