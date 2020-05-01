@@ -55,52 +55,59 @@ function Book(data) {
 
 function handleIndexPage (request, response)  {
 
-  response.status(200).render('pages/index');
+  const SQL =  `SELECT * FROM books`;
+  // const VALUES = [request.params.books];
+  
+  client.query(SQL)
+    .then( results => {
+      console.log(results.rows);
+      response.status(200).render('pages/index', {books:results.rows});
+    })
 }
 
 
-function handleNewBook(request, response){
-  let SQL = `
-  INSERT INTO books (title, authors, images, descriptions, isbn, listPrice)
-  VALUES($1, $2, $3, $4, $5, $6) 
-  `;
+// function handleNewBook(request, response){
+//   let SQL = `
+//   INSERT INTO books (title, authors, images, descriptions, isbn, listPrice)
+//   VALUES($1, $2, $3, $4, $5, $6) 
+//   `;
   
-  let VALUES = [
-    request.body.title, 
-    request.body.authors, 
-    request.body.images,
-    request.body.descriptions,
-    request.body.isbn, 
-    request.body.listPrice
-  ];
+//   let VALUES = [
+//     request.body.title, 
+//     request.body.authors, 
+//     request.body.images,
+//     request.body.descriptions,
+//     request.body.isbn, 
+//     request.body.listPrice
+//   ];
   
-  if ( ! (request.body.title || request.body.authors || request.body.images || request.body.descriptions || request.body.isbn || request.body.listPrice) ) {
-    throw new Error('invalid input');
-  }
+//   if ( ! (request.body.title || request.body.authors || request.body.images || request.body.descriptions || request.body.isbn || request.body.listPrice) ) {
+//     throw new Error('invalid input');
+//   }
   
-  client.query(SQL, VALUES)
-  .then(results => {
-    response.status(200).redirect('/', {VALUES});
-  })
-  .catch(error => {
-    console.error(error.message);
-  });
-}
+//   client.query(SQL, VALUES)
+//   .then(results => {
+//     response.status(200).redirect('/', {VALUES});
+//   })
+//   .catch(error => {
+//     console.error(error.message);
+//   });
+// }
 
-function handleGetOneBook(request, response){
-  const SQL =  `SELECT * FROM books WHERE id = $1`;
-  const VALUES = [request.params.books];
+// function handleGetOneBook(request, response){
+//   const SQL =  `SELECT * FROM books WHERE id = $1`;
+//   const VALUES = [request.params.books];
   
-  console.log('getting', request.params.books);
+//   console.log('getting', request.params.books);
   
-  client.query(SQL, VALUES)
-  .then(results => {
-    response.status(200).render('/books', {books:results.rows[0]});
-  })
-  .catch(error => {
-    console.error(error.message);
-  });
-}
+//   client.query(SQL, VALUES)
+//   .then(results => {
+//     response.status(200).render('/books', {books:results.rows[0]});
+//   })
+//   .catch(error => {
+//     console.error(error.message);
+//   });
+// }
 
 // This will force an error
 app.get('/badthing', (request,response) => {
