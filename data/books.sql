@@ -6,5 +6,5 @@ CREATE TABLE books (
   authors VARCHAR(100),
   descriptions VARCHAR(500),
   isbn VARCHAR(13),
-  listPrice VARCHAR(20),
+  listPrice VARCHAR(20)
 );
