@@ -109,7 +109,7 @@ function handleNewBook(request, response){
 
   client.query(SQL, VALUES)
   .then(results => {
-    response.status(200).redirect('/');
+    response.status(200).redirect('/index');
   })
   .catch(error => {
     console.error(error.message);
