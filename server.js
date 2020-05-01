@@ -36,6 +36,12 @@ app.get('/error', (request, response,) => {
 })
 
 
+// route for saved books//
+app.get('/index/:selected', handleGetOneBook());
+app.post('/index', handleNewBook());
+
+
+
 //show route
 app.post('/searches', (request, response) => {
   let url = 'https://www.googleapis.com/books/v1/volumes';
@@ -52,6 +58,9 @@ app.post('/searches', (request, response) => {
       });
 });
 
+
+
+
 function Book(data) {
   this.title = data.volumeInfo.title;
   this.author = data.volumeInfo.authors;
@@ -61,6 +70,49 @@ function Book(data) {
   this.isbn = data.volumeInfo.industryIdentifiers ? data.volumeInfo.industryIdentifiers[0].identifier : 'no isbn available';
 }
 
+
+function handleGetOneBook(request, response){
+  const SQL =  `SELECT * FROM books WHERE id = $1, $2, $3, $4, $5, $6`;
+  const VALUES = [request.body.books];
+
+  console.log('getting', request.body.books);
+
+  client.query(SQL, VALUES)
+    .then(results => {
+      response.status(200).render('form/index', {books:results.rows[0]});
+    })
+    .catch(error => {
+      console.error(error.message);
+    });
+}
+
+function handleNewBook(request, response){
+  let SQL = `
+  INSERT INTO books (title, authors, image, description, amount, isbn, listPrice)
+  VALUES($1, $2, $3, $4, $5, $6) 
+  `;
+
+  let VALUES = [
+    request.body.title, 
+    request.body.authors, 
+    request.body.image,
+    request.body.description,
+    request.body.isbn, 
+    request.body.listPrice
+  ];
+
+  if ( ! (request.body.title || request.body.authors || request.body.image || request.body.description || request.body.isbn || request.body.listPrice) ) {
+    throw new Error('invalid input');
+  }
+
+  client.query(SQL, VALUES)
+  .then(results => {
+    response.status(200).redirect('/');
+  })
+  .catch(error => {
+    console.error(error.message);
+  });
+}
 
 // This will force an error
 app.get('/badthing', (request,response) => {
