@@ -37,8 +37,8 @@ app.get('/error', (request, response,) => {
 
 
 // route for saved books//
-app.get('/index/:selected', handleGetOneBook());
-app.post('/index', handleNewBook());
+app.get('/books/: books', handleGetOneBook);
+app.post('/index', handleNewBook);
 
 
 
@@ -73,6 +73,8 @@ function Book(data) {
 
 function handleGetOneBook(request, response){
   const SQL =  `SELECT * FROM books WHERE id = $1, $2, $3, $4, $5, $6`;
+
+
   const VALUES = [request.body.books];
 
   console.log('getting', request.body.books);

@@ -7,5 +7,5 @@ CREATE TABLE books (
   TEXTIMAGE_ON image,
   description VARCHAR(500),
   isbn VARCHAR(13),
-  listPrice NUMERIC(10, 2),
+  listPrice VARCHAR(20),
 )
