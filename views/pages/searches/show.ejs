@@ -15,7 +15,7 @@
   <main class="searchResults">
     <div>
       <% books.forEach (book => { %> 
-        <section id="bordersection">
+        <section class="bordersection">
           <div>
             <img id="bookCover" src="<%= book.image %>">
           </div>
@@ -31,14 +31,15 @@
           <div id="isbn">
             ISBN: <%= book.isbn %> 
           </div>
-          <div id="price">
-            Price: <%= book.amount %> 
-          </div>
           <div id="selecter">
-            <form id="searchForm" method="post" action="/add">     
-              <input type="hidden" name="title" value= <% book.title %>> 
+            <form id="searchForm" method="post" action="/add"> 
+              <input type="hidden" name="title" value= "<%= book.title %>" />
+              <input type="hidden" name="image" value= "<%= book.image %>" />
+              <input type="hidden" name="author" value= "<%= book.author %>" />
+              <input type="hidden" name="description" value= "<%= book.description %>" />
+              <input type="hidden" name="isbn" value= "<%= book.isbn %>" />
               <button  type="submit" id="selectThisBook">SELECT THIS BOOK</button>
-            </form>
+            </form> 
           </div>
           </section>
       <% }); %>
