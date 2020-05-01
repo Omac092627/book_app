@@ -36,7 +36,8 @@
           </div>
 
           <div id="selecter">
-            <form name="selectThisBook" id="searchForm" method="post" action="/">      
+            <form name="selectThisBook" id="searchForm" method="get" action="/">     
+              <input type="hidden" name="title" value="book.title">
              <button  type="submit" id="selectThisBook">SELECT THIS BOOK</button>
             </form>
           </div>
