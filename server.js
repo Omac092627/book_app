@@ -82,10 +82,21 @@ app.get('/new', (request, response) => {
   response.status(200).render('pages/searches/new')
 });
 
-// route for saved books//
-app.get('/onebook', (request, response) => {
-  response.status(200).render('pages/searches/onebook')
-});
+// app.get('/task/:coolstuff', handleGetOneTask); // "READ/GET" only one
+app.get('show/:id', handleOneBook);
+
+function handleOneBook( request, response) {
+  const SQL = `SELECT * FROM books WHERE id = $1`;
+  const VALUES = [request.params.id];
+  client.query(SQL, VALUES)
+    .then( results => {
+      response.status(200).render('pages/searches/show', {book:results.rows[0]});
+    })
+    .catch(error => {
+      console.error(error.message);
+    });
+  
+}
 
 //show route
 app.post('/searches', (request, response) => {
@@ -121,7 +132,7 @@ function handleIndexPage (request, response)  {
   
   client.query(SQL)
     .then( results => {
-      console.log(results.rows);
+      // console.log(results.rows);
       response.status(200).render('pages/index', {books:results.rows});
     })
 }
