@@ -19,14 +19,15 @@
         Authors: <%= book.authors %>
       </li>
       
-      <form action="/update">
-        <button type="submit" id="update">Update</button>
+      <form method="post" action="/updateBook/<%= book.id %>?_method=put">
+       <button type="submit" id="update">Update</button>
       </form>
       
-      <form action="/deleteBook">
-        <button type="submit" id="delete">Delete</button>
+      <form method="post" action="/deleteBook/<%= book.id %>?_method=delete">
+        <button class="delete">Delete Book</button>
       </form>
      </ul>
+
   </main>
   
   <%- include('../pages/partials/footer') %>
