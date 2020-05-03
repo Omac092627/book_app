@@ -13,14 +13,20 @@
   
   <main>
     <ul>
-     
-        <li id="listItems">
-          <img id="bookCover" src="<%= book.image_url %>">
-          Tittle: <%= book.title %></br>
-          Authors: <%= book.authors %>
-        </li>
+      <li id="listItems">
+        <img id="bookCover" src="<%= book.image_url %>">
+        Tittle: <%= book.title %></br>
+        Authors: <%= book.authors %>
+      </li>
+      
+      <form action="/update">
+        <button type="submit" id="update">Update</button>
+      </form>
+      
+      <form action="/deleteBook">
+        <button type="submit" id="delete">Delete</button>
+      </form>
      </ul>
-    </form>
   </main>
   
   <%- include('../pages/partials/footer') %>

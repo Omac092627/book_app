@@ -18,12 +18,13 @@
         <img id="bookCover" src="<%= book.image_url %>">
         <li id="listItems">
           Tittle: <%= book.title %></br>
-          Authors: <%= book.authors %>
+          Authors: <%= book.authors %> <br>
+          ID: <%= book.id %>
         </li>    
         <button type="submit" id="viewDetails">View Details</button>
-        <% }) %>
       </ul>
     </form>
+    <% }) %>
   </main>
   
   <%- include('../pages/partials/footer') %>
