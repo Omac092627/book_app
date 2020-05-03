@@ -29,6 +29,7 @@
         <input class="update" name="isbn" value= "<%= book.isbn %>" /><br>
         <input id="descript" class="update" name="description" value= "<%= book.descriptions %>" /><br>
         <button type="submit">Update</button>
+
       </form>
     </span>
     <form method="post" action="/delete-book/<%= book.id %>?_method=delete">
@@ -37,8 +38,9 @@
       
 
 
-      
+     
      </ul>
+
   </main>
   
   <%- include('../pages/partials/footer') %>
