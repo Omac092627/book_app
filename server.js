@@ -27,10 +27,6 @@ app.get('/new', searchBooks);
 app.post('/searches', resultsFromAPI);
 app.post('/add', addNewBook);
 app.get('/onebook/:id', handleOneBook);
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> c47f8883f6a55dca7d8c20a17baa2eb5b06fe16a
 app.delete('/delete-book/:id', handleDelete);
 app.put('/update-book/:id', handleUpdate);
 
@@ -75,14 +71,6 @@ function handleDelete( request, response) {
 
 }
 
-<<<<<<< HEAD
-=======
-app.delete('/deleteBook/:id', deleteBook);
-app.put('/updateBook/:id', updateBook);
->>>>>>> 78f064b43aa31b20d0b53bf5f1c79f5733d6d9f5
-=======
-
->>>>>>> c47f8883f6a55dca7d8c20a17baa2eb5b06fe16a
 
 
 function addNewBook (request, response) {
