@@ -8,7 +8,6 @@ const PORT = process.env.PORT || 3000;
 const pg = require('pg');
 const methodOverride = require('method-override');
 const app = express();
-const methodOverride = require('method-override');
 
 const client = new pg.Client(process.env.DATABASE_URL);
 
@@ -18,7 +17,6 @@ app.use(express.urlencoded({extended:true}));
 app.use(methodOverride('_method'));
 
 app.use(express.static('./public'));
-app.use(methodOverride('_method'));
 
 
 //If it finds the route
