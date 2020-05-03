@@ -19,6 +19,7 @@
         Tittle: <%= book.title %></br>
         Authors: <%= book.authors %>
       </li>
+<<<<<<< HEAD
       <button id="edit">Update</button>
 
     <span id="flex">
@@ -29,6 +30,11 @@
         <input class="update" name="isbn" value= "<%= book.isbn %>" /><br>
         <input id="descript" class="update" name="description" value= "<%= book.descriptions %>" /><br>
         <button type="submit">Update</button>
+=======
+      
+      <form method="post" action="/updateBook/<%= book.id %>?_method=put">
+       <button type="submit" id="update">Update</button>
+>>>>>>> 78f064b43aa31b20d0b53bf5f1c79f5733d6d9f5
       </form>
     </span>
     <form method="post" action="/delete-book/<%= book.id %>?_method=delete">
@@ -38,7 +44,14 @@
 
 
       
+<<<<<<< HEAD
+=======
+      <form method="post" action="/deleteBook/<%= book.id %>?_method=delete">
+        <button class="delete">Delete Book</button>
+      </form>
+>>>>>>> 78f064b43aa31b20d0b53bf5f1c79f5733d6d9f5
      </ul>
+
   </main>
   
   <%- include('../pages/partials/footer') %>

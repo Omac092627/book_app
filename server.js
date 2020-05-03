@@ -8,12 +8,15 @@ const PORT = process.env.PORT || 3000;
 const pg = require('pg');
 const methodOverride = require('method-override');
 const app = express();
+const methodOverride = require('method-override');
 
 const client = new pg.Client(process.env.DATABASE_URL);
 
 //brings in EJS
 app.set('view engine', 'ejs');
 app.use(express.urlencoded({extended:true}));
+app.use(methodOverride('_method'));
+
 app.use(express.static('./public'));
 app.use(methodOverride('_method'));
 
@@ -24,6 +27,7 @@ app.get('/new', searchBooks);
 app.post('/searches', resultsFromAPI);
 app.post('/add', addNewBook);
 app.get('/onebook/:id', handleOneBook);
+<<<<<<< HEAD
 app.delete('/delete-book/:id', handleDelete);
 app.put('/update-book/:id', handleUpdate);
 
@@ -68,6 +72,10 @@ function handleDelete( request, response) {
 
 }
 
+=======
+app.delete('/deleteBook/:id', deleteBook);
+app.put('/updateBook/:id', updateBook);
+>>>>>>> 78f064b43aa31b20d0b53bf5f1c79f5733d6d9f5
 
 
 function addNewBook (request, response) {
@@ -148,6 +156,30 @@ function handleIndexPage (request, response)  {
     .then( results => {
       response.status(200).render('pages/index', {books:results.rows});
     })
+}
+
+function deleteBook(request, response) {
+  let id = request.params.id;
+
+  let SQL = "DELETE FROM books WHERE id = $1";
+  let VALUES = [id];
+
+  client.query(SQL, VALUES)
+    .then( (results => {
+      response.status(200).redirect('/')
+    }));
+}
+
+function updateBook(request, response) {
+  let id = request.params.id;
+
+  let SQL = 'UPDATE books SET authors = "Chuck Li" WHERE id = $1';
+  let VALUES = [id];
+
+  client.query(SQL, VALUES)
+    .then( (results => {
+      response.status(200).redirect('/')
+    }));
 }
 
 // This will force an error
