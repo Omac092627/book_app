@@ -17,11 +17,14 @@ app.use(express.static('./public'));
 
 //If it finds the route
 app.get ('/', handleIndexPage);
-
+app.get('/new', searchBooks);
+app.post('/searches', resultsFromAPI);
 app.post('/add', addNewBook);
+app.get('/onebook/:id', handleOneBook);
+
 
 function addNewBook (request, response) {
-  console.log('Book to be added: ', request.body);
+  // console.log('Book to be added: ', request.body);
   let SQL = `
     INSERT INTO books (title, authors, descriptions, isbn, image_url)
     VALUES($1, $2, $3, $4, $5)
@@ -48,49 +51,17 @@ client.query(SQL, VALUES)
   });
 }
 
-
-function addNewBook (request, response) {
-  console.log('Book to be added: ', request.body);
-  let SQL = `
-    INSERT INTO books (title, authors, descriptions, isbn, image_url)
-    VALUES($1, $2, $3, $4, $5)
-  `;
-
-let VALUES = [
-  request.body.title,
-  request.body.author,
-  request.body.description,
-  request.body.isbn,
-  request.body.image,
-];
-
-if ( ! (request.body.title || request.body.authors || request.body.descriptions || request.body.isbn || request.body.image_url) ) {
-  throw new Error('invalid input');
-}
-
-client.query(SQL, VALUES)
-  .then( results => {
-    response.status(200).redirect('/');
-  })
-  .catch( error => {
-    console.error( error.message );
-  });
-}
-
-//new search route
-app.get('/new', (request, response) => {
+function searchBooks(request, response) {
   response.status(200).render('pages/searches/new')
-});
+};
 
-// app.get('/task/:coolstuff', handleGetOneTask); // "READ/GET" only one
-app.get('show/:id', handleOneBook);
 
 function handleOneBook( request, response) {
   const SQL = `SELECT * FROM books WHERE id = $1`;
   const VALUES = [request.params.id];
   client.query(SQL, VALUES)
     .then( results => {
-      response.status(200).render('pages/searches/show', {book:results.rows[0]});
+      response.status(200).render('pages/onebook', {book:results.rows[0]});
     })
     .catch(error => {
       console.error(error.message);
@@ -98,8 +69,7 @@ function handleOneBook( request, response) {
   
 }
 
-//show route
-app.post('/searches', (request, response) => {
+function resultsFromAPI (request, response) {
   let url = 'https://www.googleapis.com/books/v1/volumes';
   let queryObject = {
     q: `${request.body.searchby}:${request.body.search}`,
@@ -108,14 +78,11 @@ app.post('/searches', (request, response) => {
   superagent.get(url)
   .query(queryObject)
   .then(results => {
-    // if (results === 'null') {
-    //   alert('oh crap');
-    // }
     console.log(results);
     let books = results.body.items.map(book => new Book(book));
     response.status(200).render('pages/searches/show', {books: books});
   });
-});
+};
 
 function Book(data) {
   this.title = data.volumeInfo.title;
@@ -132,7 +99,6 @@ function handleIndexPage (request, response)  {
   
   client.query(SQL)
     .then( results => {
-      // console.log(results.rows);
       response.status(200).render('pages/index', {books:results.rows});
     })
 }
@@ -144,7 +110,6 @@ app.get('/badthing', (request,response) => {
 
 // 404 Handler
 app.use('*', (request, response) => {
-  console.log(request);
   response.status(404).send(`Can't Find ${request.path}`);
 });
 
