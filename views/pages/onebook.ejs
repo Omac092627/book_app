@@ -12,26 +12,41 @@
   <%- include('../pages/partials/header') %>
   
   <main>
+
     <ul>
       <li id="listItems">
         <img id="bookCover" src="<%= book.image_url %>">
         Tittle: <%= book.title %></br>
         Authors: <%= book.authors %>
       </li>
-      
-      <form method="post" action="/updateBook/<%= book.id %>?_method=put">
-       <button type="submit" id="update">Update</button>
+      <button id="edit">Update</button>
+
+    <span id="flex">
+      <form id="edit-task-form"  method="post" action="/update-book/<%= book.id %>?_method=put">
+        <input class="update" name="title" value= "<%= book.title %>" /><br>
+        <input class="update" name="image" value= "<%= book.image_url %>" /><br>
+        <input class="update" name="author" value= "<%= book.authors %>" /><br>
+        <input class="update" name="isbn" value= "<%= book.isbn %>" /><br>
+        <input id="descript" class="update" name="description" value= "<%= book.descriptions %>" /><br>
+        <button type="submit">Update</button>
+
       </form>
+    </span>
+    <form method="post" action="/delete-book/<%= book.id %>?_method=delete">
+      <button type="submit" id="delete">Delete</button>
+    </form>
       
-      <form method="post" action="/deleteBook/<%= book.id %>?_method=delete">
-        <button class="delete">Delete Book</button>
-      </form>
+
+
+     
      </ul>
 
   </main>
   
   <%- include('../pages/partials/footer') %>
 
-</body>
 
+  <%- include('../pages/partials/scripts') %>
+
+</body>
 </html>

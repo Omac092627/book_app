@@ -6,6 +6,7 @@ const express = require('express');
 const superagent = require('superagent');
 const PORT = process.env.PORT || 3000;
 const pg = require('pg');
+const methodOverride = require('method-override');
 const app = express();
 const methodOverride = require('method-override');
 
@@ -17,6 +18,8 @@ app.use(express.urlencoded({extended:true}));
 app.use(methodOverride('_method'));
 
 app.use(express.static('./public'));
+app.use(methodOverride('_method'));
+
 
 //If it finds the route
 app.get ('/', handleIndexPage);
@@ -24,8 +27,51 @@ app.get('/new', searchBooks);
 app.post('/searches', resultsFromAPI);
 app.post('/add', addNewBook);
 app.get('/onebook/:id', handleOneBook);
-app.delete('/deleteBook/:id', deleteBook);
-app.put('/updateBook/:id', updateBook);
+app.delete('/delete-book/:id', handleDelete);
+app.put('/update-book/:id', handleUpdate);
+
+
+//update the book//
+function handleUpdate(request, response){
+  let SQL = 'UPDATE books set title = $1, authors= $2, descriptions= $3, isbn = $4, image_url= $5 WHERE id = $6';
+  let VALUES = [
+    request.body.title, 
+    request.body.author, 
+    request.body.description, 
+    request.body.isbn, 
+    request.body.image, 
+    request.params.id,
+  ];
+  
+  client.query(SQL, VALUES)
+    .then(results => {
+      response.status(200).redirect(`/onebook/${request.params.id}`)
+    })
+
+
+}
+
+
+//delete the book//
+function handleDelete( request, response) {
+
+  // let id = request.body.id; // 4
+  // app.post('/delete/:id') ... the :id is request.params.id
+
+  let id = request.params.id; // 77
+
+  let SQL = 'DELETE FROM books WHERE id = $1';
+  let VALUES = [id];
+
+  client.query( SQL, VALUES )
+    .then( (resposne) => {
+      response.status(200).redirect('/');
+    });
+
+
+}
+
+
 
 
 function addNewBook (request, response) {
