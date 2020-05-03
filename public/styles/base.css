@@ -130,4 +130,18 @@ button{
   padding: 1rem;
 }
 
+.update{
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid black;
+  border-radius: 1rem;
+}
+
+#descript{
+  padding: 5rem;
+  overflow-y: scroll;
+}
+
+
+
 
