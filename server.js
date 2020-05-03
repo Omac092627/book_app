@@ -29,6 +29,26 @@ app.delete('/delete-book/:id', handleDelete);
 app.put('/update-book/:id', handleUpdate);
 
 
+
+// started the function for the bookshelf//
+
+// app.get('/bookshelf/:id', handleBookshelf)
+
+// function handleBookshelf(request, response){
+//   let SQL = 'SELECT DISTINCT bookshelf FROM books WHERE id=$1'
+//   let VALUES = [
+//     request.params.id,
+//   ];
+  
+//   client.query(SQL, VALUES)
+//     .then(results => {
+//       response.status(200).redirect(`/bookshelf/${request.params.id}`)
+//     })
+// }
+
+
+
+
 //update the book//
 function handleUpdate(request, response){
   let SQL = 'UPDATE books set title = $1, authors= $2, descriptions= $3, isbn = $4, image_url= $5 WHERE id = $6';

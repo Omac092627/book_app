@@ -16,8 +16,10 @@
     <ul>
       <li id="listItems">
         <img id="bookCover" src="<%= book.image_url %>">
-        Tittle: <%= book.title %></br>
-        Authors: <%= book.authors %>
+        Tittle: <%= book.title %><br>
+        Authors: <%= book.authors %><br>
+        <!-- Bookshelf:<%= book.bookshelf%> -->
+        ISBN:<%= book.isbn %>
       </li>
 
       <button id="edit">Update</button>
@@ -30,14 +32,7 @@
           <input class="update" name="isbn" value= "<%= book.isbn %>" /><br>
           <textarea id="descript" class="update" name="description" ><%= book.descriptions %></textarea><br>
           
-        <div class="dropdown">
-          <button class="dropbtn">--populated bookshelf</button>
-          <div id="myDropdown" class="dropdown-content">
-            <a href="/onebook/<%=book.id%>" name="title"><%=book.title%></a>
-            
-          </div>
-        </div>
-        
+          <%- include('../pages/partials/dropdown') %>
         
         
         
